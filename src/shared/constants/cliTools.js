@@ -114,13 +114,13 @@ export const CLI_TOOLS = {
     color: "#FF6B35",
     description: "Open Claw AI Assistant",
     configType: "custom",
-    // One-click "free AI" presets. These map to 9Router's noAuth `category: "free"`
-    // providers (mimo-free → `mmf`, opencode → `oc`), so they route with no API key,
-    // no credits, and no upstream account. Selecting one fills the Default Model field;
-    // hit Apply to write ~/.openclaw/openclaw.json.
+    // One-click "free AI" preset. Maps to 9Router's noAuth `category: "free"`
+    // MiMo provider (mimo-free → `mmf`), so it routes with no API key, no credits,
+    // and no upstream account. `mimo-auto` is static in the provider registry, so it
+    // won't silently break the way a dynamically-fetched free catalog (e.g. OpenCode)
+    // can. Selecting it fills the Default Model field; hit Apply / copy the config.
     freeModels: [
       { id: "mmf/mimo-auto", name: "MiMo Code Free" },
-      { id: "oc/big-pickle", name: "OpenCode Free" },
     ],
   },
   codex: {

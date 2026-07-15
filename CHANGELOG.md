@@ -1,7 +1,7 @@
 # Unreleased
 
 ## Features
-- **Open Claw**: one-click free-AI presets (MiMo Code Free, OpenCode Free) — route with no API key or credits
+- **Open Claw**: one-click free-AI preset (MiMo Code Free) — routes with no API key or credits
 - **Open Claw**: remote-server setup flow — when the CLI isn't installed locally, configure endpoint/key/model against the public server URL and copy a ready `~/.openclaw/openclaw.json`
 
 # v0.5.30 (2026-07-10)
