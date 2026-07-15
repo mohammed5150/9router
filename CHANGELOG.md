@@ -1,3 +1,8 @@
+# Unreleased
+
+## Features
+- **Open Claw**: one-click free-AI presets (MiMo Code Free, OpenCode Free) — route with no API key or credits
+
 # v0.5.30 (2026-07-10)
 
 ## Features

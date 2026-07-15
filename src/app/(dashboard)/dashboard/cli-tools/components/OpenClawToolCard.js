@@ -190,6 +190,41 @@ export default function OpenClawToolCard({
     setModalOpen(false);
   };
 
+  // One-click free-AI preset: drop a noAuth free model into the Default Model
+  // field. No API key / active provider required — 9Router routes it directly.
+  const applyFreePreset = (modelId) => {
+    setAgentModalFor(null);
+    setSelectedModel(modelId);
+  };
+
+  const renderFreePresets = () => {
+    if (!tool.freeModels?.length) return null;
+    return (
+      <div className="flex flex-col gap-2 rounded-lg border border-green-500/30 bg-green-500/5 p-2.5">
+        <div className="flex items-center gap-1.5">
+          <span className="material-symbols-outlined text-[16px] text-green-600 dark:text-green-400">bolt</span>
+          <span className="text-xs font-semibold text-text-main">Free AI — no API key needed</span>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {tool.freeModels.map((fm) => {
+            const active = selectedModel === fm.id;
+            return (
+              <button
+                key={fm.id}
+                type="button"
+                onClick={() => applyFreePreset(fm.id)}
+                title={fm.id}
+                className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${active ? "border-green-500 bg-green-500/15 text-green-700 dark:text-green-300" : "border-border bg-surface text-text-main hover:border-green-500/60"}`}
+              >
+                {fm.name}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   const getManualConfigs = () => {
     const keyToUse = (selectedApiKey && selectedApiKey.trim())
       ? selectedApiKey
@@ -259,6 +294,7 @@ export default function OpenClawToolCard({
 
           {!checkingOpenclaw && openclawStatus && !openclawStatus.installed && (
             <div className="flex flex-col gap-4">
+              {renderFreePresets()}
               <div className="flex flex-col gap-3 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-yellow-500">warning</span>
@@ -279,6 +315,7 @@ export default function OpenClawToolCard({
 
           {!checkingOpenclaw && openclawStatus?.installed && (
             <>
+              {renderFreePresets()}
               <div className="flex flex-col gap-2">
                 {/* Endpoint (selector) */}
                 <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-[8rem_auto_1fr] sm:items-center sm:gap-2">
